@@ -1,0 +1,11 @@
+.control-reset {
+    padding: 5px;
+    background-color: #ffff;
+    border-radius: 5px;
+    color: black;
+    font-size: 15px;
+}
+
+.control-reset:hover {
+    background-color: #f4f4f4;
+}

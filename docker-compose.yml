@@ -1,0 +1,27 @@
+services:
+  mysql:
+    image: mysql:latest
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=anpr-api
+  api:
+    image: bitnami/laravel:9
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_DATABASE=anpr-api
+    volumes:
+      - './api/:/app'
+    depends_on:
+      - mysql
+  frontend:
+    image: httpd:2.4
+    ports:
+      - '8080:80'
+    volumes:
+      - './frontend/build:/usr/local/apache2/htdocs/'
